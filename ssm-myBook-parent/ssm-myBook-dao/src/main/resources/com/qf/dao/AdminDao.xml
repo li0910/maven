@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.AdminDao">
+    <resultMap id="adminMap" type="com.qf.pojo.Admin">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="psw" column="psw"></result>
+    </resultMap>
+
+    <insert id="addAdmin">
+        insert into mysql2000.admin(NAME, psw) values (#{name}, #{psw})
+    </insert>
+
+    <select id="adminLogin" resultMap="adminMap">
+        select id, name, psw from mysql2000.admin
+        where NAME = #{name} and psw = #{psw}
+    </select>
+
+    <select id="findAllAdmin" resultMap="adminMap">
+        select id, name, psw from mysql2000.admin
+    </select>
+
+    <update id="updateAdmin">
+        update mysql2000.admin set NAME = #{name},psw = #{psw} where id = #{id}
+    </update>
+</mapper>

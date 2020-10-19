@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.ClassDao">
+    <resultMap id="classMap" type="com.qf.pojo.Class">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="descr" column="descr"></result>
+    </resultMap>
+
+    <select id="findById" resultMap="classMap">
+        select id, name ,descr from mysql2000.class
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="classMap">
+        select id,name,descr from mysql2000.class
+    </select>
+
+    <insert id="addClass">
+        insert into mysql2000.class(NAME, descr)
+        values (#{name}, #{descr})
+    </insert>
+
+    <update id="modifyClass">
+        update mysql2000.class set NAME = #{name}, descr = #{descr}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClass">
+        delete from mysql2000.class
+        where id = #{id}
+    </delete>
+</mapper>

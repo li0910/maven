@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.BookDao">
+    <resultMap id="bookMap" type="com.qf.pojo.Book">
+        <id property="id" column="id"></id>
+        <result property="bookName" column="bookname"></result>
+        <result property="author" column="author"></result>
+        <result property="price" column="price"></result>
+        <result property="classId" column="classid"></result>
+        <result property="descr" column="descr"></result>
+        <result property="path" column="path"></result>
+<!--        <result property="name" column="bookClassName"></result>-->
+        <association property="aClass" javaType="com.qf.pojo.Class"
+                     select="com.qf.dao.ClassDao.findById"
+                     column="classid">
+        </association>
+    </resultMap>
+
+    <sql id="baseSelect">
+        id,bookname,author,price,classid,descr,path
+    </sql>
+
+    <select id="findById" resultMap="bookMap">
+        select
+        <include refid="baseSelect"></include>
+        from mysql2000.book
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="bookMap">
+        select
+        <include refid="baseSelect"></include>
+        from mysql2000.book
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="queryBookName != null and queryBookName != ''">
+                and bookname like "%"#{queryBookName}"%"
+            </if>
+            <if test="queryAuthor != null and queryAuthor != ''">
+                and author like "%"#{queryAuthor}"%"
+            </if>
+            <if test="queryBookClassName != null and queryBookClassName != ''">
+                and classid = #{queryBookClassName}
+            </if>
+
+        </trim>
+    </select>
+
+
+
+    <insert id="addBook">
+        insert into mysql2000.book(bookname, author, price, classid, descr, path)
+        values (#{bookName},#{author},#{price},#{classId},#{descr},#{path})
+    </insert>
+
+    <update id="modifyBook">
+        update mysql2000.book set bookname = #{bookName},author = #{author},price = #{price},classid = #{classId},
+                                    descr = #{descr},path = #{path} where id = #{id}
+    </update>
+
+    <delete id="deleteBook">
+        delete from mysql2000.book
+        where id = #{id}
+    </delete>
+
+
+</mapper>

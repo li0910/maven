@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.CustomerDao">
+    <resultMap id="customerMap" type="com.qf.pojo.Customer">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="psw" column="psw"></result>
+        <result property="phone" column="phone"></result>
+        <result property="email" column="email"></result>
+        <result property="address" column="address"></result>
+    </resultMap>
+
+    <insert id="addCustomer">
+        insert into mysql2000.customer(NAME, psw, phone, email, address)
+                                        values (#{name}, #{psw}, #{phone},#{email},#{address})
+    </insert>
+
+    <select id="findAllCustomer" resultMap="customerMap">
+        select id ,name, psw, phone, email, address from mysql2000.customer
+    </select>
+
+    <select id="customerLogin" resultMap="customerMap">
+        select id ,name, psw, phone, email, address
+        from mysql2000.customer
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="#{name} != null">
+                and name = #{name }
+            </if>
+            <if test="#{psw} != null">
+                and name = #{psw}
+            </if>
+        </trim>
+    </select>
+
+    <delete id="deleteCustomer">
+        delete from mysql2000.customer
+        where id = #{id}
+    </delete>
+</mapper>

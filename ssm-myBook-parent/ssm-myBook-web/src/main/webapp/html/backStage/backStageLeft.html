@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+    <meta name="renderer" content="webkit">
+    <!--国产浏览器高速模式-->
+    <title>后台界面</title>
+
+    <!-- 公共样式 开始 -->
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="bookmark" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <script type="text/javascript" src="framework/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <!--[if lt IE 9]>
+    <script src="framework/html5shiv.min.js"></script>
+    <script src="framework/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <!-- 滚动条插件 -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+    <script src="framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="framework/jquery.mousewheel.min.js"></script>
+    <script src="framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <!-- 公共样式 结束 -->
+
+    <link rel="stylesheet" type="text/css" href="css/frameStyle.css">
+    <script type="text/javascript" src="framework/frame.js"></script>
+
+</head>
+
+<body>
+<!-- 左侧菜单 - 开始 -->
+<div class="frameMenu">
+    <div class="logo">
+        <img src="images/logo.png"/>
+        <div class="logoText">
+            <h1>后台管理</h1>
+            <p>houtaiguanli</p>
+        </div>
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i
+                        class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>书籍管理<i
+                        class="iconfont icon-dajiantouyou right"></i></a>
+                <dl>
+                    <dt><a href="/book/findAll" target="show" onclick="menuCAClick('tgls/agent/agent_add.html',this)">查看所有书籍</a>
+                    </dt>
+                    <dt><a href="/book/toAddBook" target="show"
+                           onclick="menuCAClick('tgls/agent/agent_list.html',this)">添加书籍</a></dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>书籍分类管理<i
+                        class="iconfont icon-dajiantouyou right"></i></a>
+                <dl>
+                    <dt><a href="/class/findAll" target="show"
+                           onclick="menuCAClick('tgls/goodsManage/goodsType_list.html',this)">所有分类</a></dt>
+                    <dt><a href="/class/toAddClass" target="show"
+                           onclick="menuCAClick('tgls/goodsManage/goods_add.html',this)">添加分类</a></dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>会员管理<i
+                        class="iconfont icon-dajiantouyou right"></i></a>
+                <dl>
+                    <dt><a href="/customer/findAllCustomer" target="show"
+                           onclick="menuCAClick('tgls/base/base_add.html',this)">查看所有会员</a></dt>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <!-- 左侧菜单 - 结束 -->
+</div>
+</body>
+
+</html>
